@@ -15,35 +15,50 @@
 
 ### Program:
 ```python
-# Visitor segmentation based on characteristics
-# read the data
-/*WRITE YOUR CODE HERE
+import pandas as pd
 
-# Perform segmentation based on characteristics (e.g., age groups)
-/*WRITE YOUR CODE HERE
+# Read the CSV file into a DataFrame
+data = pd.read_csv('visitor_data.csv')
+
+# Define age groups using a dictionary with Boolean conditions
+age_groups = {
+    '18-24': (data['age'] >= 18) & (data['age'] <= 24),
+    '25-34': (data['age'] >= 25) & (data['age'] <= 34),
+    '35-44': (data['age'] >= 35) & (data['age'] <= 44),
+    '45-54': (data['age'] >= 45) & (data['age'] <= 54),
+    '55-64': (data['age'] >= 55) & (data['age'] <= 64),
+    '65+': (data['age'] >= 65)
+}
+
+# Segment visitors by iterating through the age groups and filter visitors into respective groups
+segmented_visitors = {group: data[condition] for group, condition in age_groups.items()}
+
+# Count the number of visitors in each age group
+visitor_counts = [len(segmented_visitors[group]) for group in age_groups]
+
+# Define age group labels
+age_group_labels = list(age_groups.keys())
+
 
 ```
-### Output:
 
 ### Visualization:
 ```python
-# Create a list to store counts of visitors in each age group
-/*WRITE YOUR CODE HERE
+import matplotlib.pyplot as plt
 
-# Count visitors in each age group
-/*WRITE YOUR CODE HERE
-    
-# Define age group labels and plot a bar chart
-/*WRITE YOUR CODE HERE
-
+# Plot a bar chart for visitor distribution across age groups
 plt.figure(figsize=(8, 6))
 plt.bar(age_group_labels, visitor_counts, color='skyblue')
 plt.xlabel('Age Groups')
 plt.ylabel('Number of Visitors')
 plt.title('Visitor Distribution Across Age Groups')
 plt.show()
+
 ```
 ### Output:
+![image](https://github.com/user-attachments/assets/9295684b-08bc-41e5-996b-2c91f5bf161b)
+
 
 
 ### Result:
+thus the code excuted sucessfully 
